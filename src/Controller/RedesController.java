@@ -64,7 +64,7 @@ public class RedesController {
 		if (osName.contains("Windows")) {
 			process = "PING -4 -n 10 www.google.com.br";
 		} else if (osName.contains("Linux")) {
-			process = "PING -4 -c 10 www.google.com.br";
+			process = "ping -4 -c 10 www.google.com.br";
 		}
 		try {
 			Process p = Runtime.getRuntime().exec(process);
@@ -75,7 +75,7 @@ public class RedesController {
 			linha = buffer.readLine();
 			while (linha != null) {
 				linha = buffer.readLine();
-				if (linha.contains("tempo")) {
+				if (linha.contains("tempo") || linha.contains("time")) {
 					String timeWithValue = linha.split(" ")[4];
 					String value = timeWithValue.split("=")[1];
 					value = value.replace("ms", "");
@@ -93,7 +93,7 @@ public class RedesController {
 			e.printStackTrace();
 		}
 		media = latency / 10;
-		System.out.println("Tempo médio: " + media);
+		System.out.println("Tempo mï¿½dio: " + media);
 		return media;
 	}
 }
